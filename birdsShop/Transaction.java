@@ -1,7 +1,6 @@
 package birdsShop;
 
 import birdsShop.Birds.Bird;
-
 import java.util.Date;
 
 /**
@@ -10,6 +9,7 @@ import java.util.Date;
 public class Transaction {
     private Bird bird;
     private Customer customer;
+    private Category category;
 
     private double qty;
     private Date date;
@@ -18,12 +18,17 @@ public class Transaction {
         this.date = new Date();
     };
 
-    public Transaction(Customer customer, Bird bird, double qty){
+    public Transaction(Customer customer, Bird bird, double qty, Category category){
         this();
         this.customer = customer;
         this.bird = bird;
         this.qty = qty;
+        this.category = category;
     };
+
+    public Date getDate() {
+        return date;
+    }
 
     public Bird getBird() {
         return bird;
@@ -47,5 +52,13 @@ public class Transaction {
 
     public void setQty(double qty) {
         this.qty = qty;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

@@ -2,7 +2,9 @@ package birdsShop;
 
 import birdsShop.Birds.Bird;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Printer {
     private Shop shop;
@@ -18,14 +20,14 @@ public class Printer {
     }
 
     public void printTransactions(){
+        SimpleDateFormat df = new SimpleDateFormat("d MMM yy hh:mm", Locale.ENGLISH);
+
         for(Transaction t : shop.getListTransaction()){
-            //Date date;
+            Date date = t.getDate();
             String nameCustomer = t.getCustomer().getNameCustomer();
             String nameBird = t.getBird().getNameBird();
-            double qty = t.getQty();
             double price = t.getBird().getPrice();
-            System.out.println(nameCustomer + ", " + nameBird + ", category: " t.+ price: " + price + "$, qty: "+ qty);
+            System.out.println(df.format(date) + "; " + nameCustomer + ", " + nameBird + ", category: " +  t.getCategory() + "; price: " + price + "грн, qty: "+ t.getQty());
         }
     }
-
 }

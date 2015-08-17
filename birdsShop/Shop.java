@@ -39,6 +39,13 @@ public class Shop {
         return listTransactions;
     }
 
+    public Bird getBirdByName(String nameBird){
+        for(Bird b : listBirds){
+            if (nameBird.equals(b.getNameBird())) return b;
+        }
+        return null;
+    }
+
     /* setteres */
 
     public void setCustomer(Customer customer) {
@@ -47,6 +54,14 @@ public class Shop {
 
     public void setTransaction(Transaction transaction) {
         this.transaction = transaction;
+    }
+
+    public List<ItemStoreDB> getListStoreDB() {
+        return listStoreDB;
+    }
+
+    public void setListStoreDB(List<ItemStoreDB> listStoreDB) {
+        this.listStoreDB = listStoreDB;
     }
 
     /* added */
@@ -59,8 +74,8 @@ public class Shop {
         listCustomers.add(customer);
     }
 
-    public void addTransaction(Customer customer, Bird bird, double qty){
-        listTransactions.add(new Transaction(customer, bird, qty));
+    public void addTransaction(Customer customer, Bird bird, double qty, Category category){
+        listTransactions.add(new Transaction(customer, bird, qty, category));
     }
 
     public void addToStoreDB(Bird bird, double price, double qty, Category category){
@@ -73,21 +88,8 @@ public class Shop {
         addBird(new Eagle());
         addBird(new Turkey());
 
-        addCustomer(new Customer("Petrov"));
-        addCustomer(new Customer("Ivanov"));
-        addCustomer(new Customer("Sidorov"));
-
         for(int i = 0; i < listBirds.size(); i++){
             addToStoreDB(listBirds.get(i), (listBirds.get(i)).getPrice(), 1000.0, Category.NONE);
-        }
-    }
-
-    public void initTransactions(){
-        Random rand = new Random();
-        for(int i = 0; i < 10; i++) {
-            int randCustomer = rand.nextInt(listCustomers.size());
-            int randDBird = rand.nextInt(listBirds.size());
-            addTransaction(listCustomers.get(randCustomer), listBirds.get(randDBird), rand.next(100.0));
         }
     }
 
@@ -114,6 +116,10 @@ public class Shop {
 
         public double getPrice() {
             return price;
+        }
+
+        public Category getCategory() {
+            return category;
         }
     }
 }
