@@ -64,7 +64,7 @@ public class Shop {
         this.listStoreDB = listStoreDB;
     }
 
-    /* added */
+    /* add */
 
     public void addBird(Bird bird){
         listBirds.add(bird);
@@ -89,37 +89,7 @@ public class Shop {
         addBird(new Turkey());
 
         for(int i = 0; i < listBirds.size(); i++){
-            addToStoreDB(listBirds.get(i), (listBirds.get(i)).getPrice(), 1000.0, Category.NONE);
-        }
-    }
-
-    private class ItemStoreDB {
-        private Bird bird;
-        private double price;
-        private double qty;
-        private Category category;
-
-        public ItemStoreDB(Bird bird, double price, double qty, Category category){
-            this.bird = bird;
-            this.price = price;
-            this.qty = qty;
-            this.category = category;
-        }
-
-        public Bird getBird() {
-            return bird;
-        }
-
-        public double getQty() {
-            return qty;
-        }
-
-        public double getPrice() {
-            return price;
-        }
-
-        public Category getCategory() {
-            return category;
+            addToStoreDB(listBirds.get(i), (listBirds.get(i)).getPrice(), 1000.0, Category.values()[new Random().nextInt(3)]);
         }
     }
 }

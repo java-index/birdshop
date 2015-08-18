@@ -58,16 +58,11 @@ public class ShopUI {
         panelSelectBird.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
         ButtonGroup rbGroup = new ButtonGroup();
 
-        for(ItemS : shop.getListStoreDB()){
-            JRadioButton rb = new JRadioButton(b.getNameBird()); // + "; price: " + b.getPrice());
-            rb.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    stringNameBtn =  rb.getText();
-                }
-            });
+        for(ItemStoreDB  item : shop.getListStoreDB()){
+            JRadioButton rb = new JRadioButton(item.getBird().getNameBird()); // + "; price: " + b.getPrice());
+            rb.setActionCommand(item.getBird().getNameBird());
             rbGroup.add(rb);
-            JLabel lPrice = new JLabel(" " + Double.toString(b.getPrice()) + "$");
+            JLabel lPrice = new JLabel(" " + Double.toString(item.getBird().getPrice()) + "$");
             panelSelectBird.add(rb);
             panelSelectBird.add(lPrice);
         }
@@ -96,10 +91,12 @@ public class ShopUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Customer c = new Customer(tfName.getText());
-                Bird b = shop.getBirdByName(stringNameBtn);
+                String str = rbGroup.getSelection().getActionCommand();
+                Bird b = shop.getBirdByName(str);
                 int count = Integer.parseInt(tfCount.getText());
                 shop.addTransaction(c, b, count, Category.NONE);
                 new Printer(shop).printTransactions();
+                //System.out.println(str);
             }
         });
         return panel;
