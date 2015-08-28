@@ -96,7 +96,7 @@ public class ShopUI {
                 int count = Integer.parseInt(tfCount.getText());
                 shop.addTransaction(c, b, count, Category.NONE);
                 new Printer(shop).printTransactions();
-                //System.out.println(str);
+//                JOptionPane.showInternalOptionDialog(panel, JOptionPane.ERROR_MESSAGE);
             }
         });
         return panel;
