@@ -1,12 +1,14 @@
-package birdsShop;
+package birdsShop.domain;
 
 public class Customer {
-    private String nameCustomer;
+    static long idSource = 1L;
 
-    public Customer(){};
+    private String nameCustomer;
+    private long id;
 
     public Customer(String nameCustomer){
         this.nameCustomer = nameCustomer;
+        this.id = idSource++;
     }
 
     public String getNameCustomer() {
@@ -15,5 +17,9 @@ public class Customer {
 
     public void setNameCustomer(String nameCustomer) {
         this.nameCustomer = nameCustomer;
+    }
+
+    public long getId() {
+        return id;
     }
 }
